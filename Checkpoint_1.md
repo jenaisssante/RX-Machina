@@ -28,7 +28,7 @@
 
 Patients must call to get status updates on prescription refills, interrupting prescribers and pharmacists who are otherwise engaged in patient care. This creates an inefficient, phone-heavy loop where all three parties lose time to coordination overhead that adds no clinical value.
 
-## 1.2 Goals (2–4 outcomes)
+## 1.2 Goals
 
 1. Give patients a live view of their refill request status, eliminating the need to call for updates.
 2. Provide prescribers and pharmacists a central dashboard to view and act on open requests without interruption.
@@ -48,7 +48,6 @@ Patients must call to get status updates on prescription refills, interrupting p
 
 | Constraint                                                                                | Risk & mitigation |
 | ----------------------------------------------------------------------------------------- | ----------------- |
-| 7-week timeline                                                                           |                   |
 | Patients may only view and create refill requests on their own prescriptions              |                   |
 | Prescribers may only view and act on requests belonging to their own patients             |                   |
 | Pharmacists must receive only the minimum patient information necessary to fill a request |                   |
@@ -62,19 +61,31 @@ Patients must call to get status updates on prescription refills, interrupting p
 
 # Section 2: Related & Competing Applications
 
-## 2.1 Landscape (at least 3 existing apps)
+## 2.1 Landscape
 
-| Application | What it does         | Strength   | Weakness / gap           |
-| ----------- | -------------------- | ---------- | ------------------------ |
-| Calendly    | Automated scheduling | Easy setup | No team resource pooling |
+
+| Application       | What it does                                                                                                                                             | Strength                                                                                                    | Weakness / gap                                                                                                             |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| **Photon Health** | Modern prescription network that routes prescriptions and empowers patients with real-time pricing and pharmacy choice via digital links.                | Drastically reduces pharmacy callbacks and administrative burden; transparent patient-facing fulfillment.   | Relies on patients utilizing digital text links; less integrated into traditional brick-and-mortar legacy paper workflows. |
+| **Surescripts**   | The national health information network facilitating electronic prescriptions, medication history, and benefit data exchange.                            | Universal industry standard integrated into virtually all major EHRs and retail pharmacies nationwide.      | Complex certification barriers and rigid legacy network infrastructure requirements for custom developers.                 |
+| **DoseSpot**      | Developer-friendly, Surescripts-certified e-prescribing software provider that allows health IT systems and telehealth platforms to embed e-prescribing. | Quick and simple API/software integration for developers; fully certified for controlled substances (EPCS). | Limited as a standalone clinical utility outside of embedded software architectures or broader EHR environments.           |
 
 ## 2.2 Feature comparison
 
-| Feature                | Competitor A | Competitor B | Competitor C | YOUR system |
-| ---------------------- | ------------ | ------------ | ------------ | ----------- |
-| Real-time availability | Yes          | Yes          | No           | Yes         |
+| Feature                                    | Photon Health | Surescripts | DoseSpot | RX-Machina |
+| ------------------------------------------ | ------------- | ----------- | -------- | ---------- |
+| Real-time refill status (patient-facing)   | Yes           | No          | No       | Yes        |
+| Prescriber approval queue                  | Yes           | Yes (EHR)   | Yes      | Yes        |
+| Pharmacist fulfillment queue               | Yes           | Yes (EHR)   | Yes      | Yes        |
+| Immutable audit trail per status change    | No            | Partial     | No       | Yes        |
+| Written reason required on denial          | No            | No          | No       | Yes        |
+| Multi-role workflow (patient + Rx + pharm) | Partial       | Yes (EHR)   | Partial  | Yes        |
+| Standalone (no EHR integration required)   | Yes           | No          | No       | Yes        |
+| Open-source / custom-deployable            | No            | No          | No       | Yes        |
 
 ## 2.3 Your differentiator
+
+RX-Machina's differentiator is the detailed auditing mechanisms to ensure full compliance and visibility into the fulfillment process.
 
 ---
 
@@ -203,15 +214,15 @@ Patients must call to get status updates on prescription refills, interrupting p
 
 # Section 10: Technology Stack
 
-| Layer                    | Technology chosen | Why this fits your project |
-| ------------------------ | ----------------- | -------------------------- |
-| Frontend / UI            |                   |                            |
-| Backend / logic          |                   |                            |
-| Data storage             |                   |                            |
-| External services / APIs |                   |                            |
-| AI / LLM (if any)        |                   |                            |
-| Build & run              |                   |                            |
-| Testing framework        |                   |                            |
+| Layer                    | Technology chosen | Why this fits your project                             |
+| ------------------------ | ----------------- | ------------------------------------------------------ |
+| Frontend / UI            | React             | Popular FE framework with large support                |
+| Backend / logic          | Java              | Enterprise standard                                    |
+| Data storage             | Postgres          | Relational DB                                          |
+| External services / APIs | Java Spring Boot  | Pre-built framework to all focus of the business logic |
+| AI / LLM (if any)        |                   |                                                        |
+| Build & run              | Maven             | Standard application only                              |
+| Testing framework        | Java Spring Boot  |                                                        |
 
 **Build-from-CLI:** *(how is the system built and launched from a terminal?)*
 
@@ -230,4 +241,4 @@ Patients must call to get status updates on prescription refills, interrupting p
 
 # Section 12: AI-Use Disclosure
 
-*(Which AI tools, for what parts, and how you verified the output — 2–4 sentences)*
+AI tools were used to do market research to understand existing software with similar use cases and evalute their features, compared to RX-Machina and analyze what differentiates RX-Machina from its competitors.  Output was verified via multiple different models answering the same questions as well as providing links to pages referenced.
